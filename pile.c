@@ -13,8 +13,7 @@ void push(stack* myStack, const int data)
 {
     node* new = malloc(sizeof(*new));
 
-    if(myStack == NULL || new == NULL)
-        exit(EXIT_FAILURE);
+    assert(myStack != NULL && new != NULL);
 
     new->val = data;
     new->next = myStack->first;
@@ -24,7 +23,7 @@ void push(stack* myStack, const int data)
 
 int pop(stack* myStack)
 {
-    int pValue = 0;
+    int pValue = EOF;
     if(myStack != NULL && myStack->first != NULL)
     {
         node* temp = myStack->first;
