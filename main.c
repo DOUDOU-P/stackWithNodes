@@ -16,8 +16,8 @@ int main(void)
    printf("Affichage de la pile: ");
    displayStack(myStack);
 
-   printf("On depile %d\n", pop(myStack));
-   printf("On depile %d\n", pop(myStack));
+   pop(myStack);
+   pop(myStack);
 
    printf("Affichage de la pile: ");
    displayStack(myStack);
@@ -28,7 +28,13 @@ int main(void)
 
    displayStack(myStack);
 
-   free(myStack);
+   for(int i = 0; i < 5; i++)
+   {
+      printf("On empile %d\n", i);
+      push(myStack, i);
+   }
+
+   freeAll(myStack);
 
    return 0;
 }

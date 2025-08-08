@@ -5,35 +5,35 @@
 
 void initialize(stack** myStack)
 {
-    *myStack = malloc(sizeof(*myStack));
+    *myStack = malloc(sizeof(**myStack));
+    assert(*myStack != NULL);
     (*myStack)->first = NULL;
     (*myStack)->size = 0;
 }
 void push(stack* myStack, const int data)
 {
-    node* new = malloc(sizeof(*new));
+    node* newNode = malloc(sizeof(*newNode));
 
-    assert(myStack != NULL && new != NULL);
+    assert(myStack != NULL && newNode != NULL);
 
-    new->val = data;
-    new->next = myStack->first;
-    myStack->first = new;
+    newNode->val = data;
+    newNode->next = myStack->first;
+    myStack->first = newNode;
     (myStack->size)++;
 }
 
 int pop(stack* myStack)
 {
-    int pValue = EOF;
     if(myStack != NULL && myStack->first != NULL)
     {
         node* temp = myStack->first;
-        pValue = temp->val;
         myStack->first = temp->next;
         (myStack->size)--;
         free(temp);
+        return 1;
     }
 
-    return pValue;
+    return 0;
 }
 
 void displayStack(stack* myStack)
@@ -55,14 +55,15 @@ size_t getSize(stack* myStack)
     assert(myStack != NULL);
     return myStack->size;
 }
-
 void clear(stack* myStack)
 {
     assert(myStack != NULL);
 
-    if(myStack->first != NULL)
-    {
+    while(myStack->first != NULL)
         pop(myStack);
-        clear(myStack);
-    }
+}
+void freeAll(stack* myStack)
+{
+    clear(myStack);
+    free(myStack);
 }

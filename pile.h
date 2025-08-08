@@ -20,5 +20,6 @@
     int pop(stack*);
     size_t getSize(stack*);
     void clear(stack*);
+    void freeAll(stack*);
 
 #endif
