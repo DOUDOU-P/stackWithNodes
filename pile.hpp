@@ -77,12 +77,17 @@
                 return false;
             }
 
-            unType getTop()
+            bool getTop(unType& data) const
             {
-                return first->getValue();
+                if(!isEmpty())
+                {
+                    data = first->getValue();
+                    return true;
+                }
+                return false;
             }
 
-            void display()
+            void display() const
             {
                 node<unType>* cursor = first;
                 while(cursor != nullptr)
